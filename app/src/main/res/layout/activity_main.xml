@@ -8,49 +8,53 @@
         tools:context=".MainActivity"
         android:background="#fff">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/gilroy_black"
+            android:gravity="center"
+            android:letterSpacing="0.06"
+            android:textColor="#0669c6"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="31dp"
+            tools:text="CHILDVAC"/>
+
+        <ImageView
+            android:id="@+id/pinButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:drawable="@drawable/profile"
+            android:gravity="right"
+            tools:srcCompat="@drawable/profile" />
+    </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
-        android:layout_height="267dp"
-            android:layout_marginEnd="172dp"
-            android:layout_marginRight="172dp"
+        android:layout_height="188dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="169dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:ignore="MissingConstraints">
 
     </android.support.v7.widget.RecyclerView>
-
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:background="@color/cardview_light_background"-->
-        <!--android:minHeight="?attr/actionBarSize"-->
-        <!--android:theme="?attr/actionBarTheme"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:fontFamily="@font/gilroy_black"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:letterSpacing="0.06"-->
-            <!--android:textColor="#0669c6"-->
-            <!--android:textSize="16sp"-->
-            <!--android:textStyle="bold"-->
-            <!--tools:layout_editor_absoluteX="16dp"-->
-            <!--tools:layout_editor_absoluteY="31dp"-->
-            <!--tools:text="CHILDVAC" />-->
-    <!--</android.support.v7.widget.Toolbar>-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="#000"
-        app:layout_constraintEnd_toEndOf="parent"></LinearLayout>
+    
 </android.support.constraint.ConstraintLayout>
