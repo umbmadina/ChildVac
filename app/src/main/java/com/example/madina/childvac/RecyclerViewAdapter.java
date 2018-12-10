@@ -1,6 +1,7 @@
 package com.example.madina.childvac;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.name.setText(mNames.get(position));
 
-        holder.image.setOnClickListener(new View.OnClickListener() {
+        holder.menu_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
@@ -61,11 +62,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ImageView image;
         TextView name;
+        CardView menu_card;
 
         public ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image_view);
             name = itemView.findViewById(R.id.name);
+            menu_card= itemView.findViewById(R.id.menu_item);
         }
     }
 }
