@@ -21,8 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".AuthActivity"/>
-        <activity android:name=".ProfileActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".AuthActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
