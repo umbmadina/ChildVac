@@ -26,8 +26,6 @@ public class FragmentListAdapter extends FragmentPagerAdapter {
                 return new PrescriptionsFragment();
             case 3:
                 return new ListFragment();
-            case 4:
-                return new PrescriptionsFragment();
             default:
                 break;
         }
@@ -44,6 +42,6 @@ public class FragmentListAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 4;
     }
 }
