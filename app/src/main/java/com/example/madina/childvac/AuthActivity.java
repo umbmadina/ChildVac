@@ -1,6 +1,7 @@
 package com.example.madina.childvac;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.madina.childvac.models.Child;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,9 +23,7 @@ public class AuthActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-
         Button authButton = findViewById(R.id.button_auth);
-
 
         authButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +47,15 @@ public class AuthActivity extends AppCompatActivity {
                                 if (!response.body().getPassword().equals(p) || response.body() == null){
                                     throw new NullPointerException();
                                 } else {
+                                    /* save child data to use in the future */
+                                    SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+                                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                    Gson gson = new Gson();
+                                    String childJson = gson.toJson(response.body());
+                                    prefsEditor.putString("Child", childJson);
+                                    prefsEditor.apply();
+                                    /* end */
+
                                     Intent mainIntent = new Intent(AuthActivity.this,MainActivity.class);
                                     startActivity(mainIntent);
                                 }
