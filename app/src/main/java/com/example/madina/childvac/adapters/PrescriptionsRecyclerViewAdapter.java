@@ -54,15 +54,6 @@ public class PrescriptionsRecyclerViewAdapter extends RecyclerView.Adapter<Presc
         holder.date.setText(list_date.get(position));
         holder.description.setText(list_description.get(position));
         holder.prescription.setText(list_prescription.get(position));
-
-
-//        holder.prescription_card.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
-//                Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override

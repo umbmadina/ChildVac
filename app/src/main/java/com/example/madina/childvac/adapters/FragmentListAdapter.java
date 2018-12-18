@@ -1,6 +1,5 @@
 package com.example.madina.childvac.adapters;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,7 +18,6 @@ public class FragmentListAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0:
                 return new PrescriptionsFragment();
-
             case 1:
                 return new ListFragment();
             case 2:
@@ -31,13 +29,6 @@ public class FragmentListAdapter extends FragmentPagerAdapter {
         }
 
         return null;
-
-//
-//         ListFragment listFragment = new ListFragment();
-//         Bundle bundle = new Bundle();
-//        position += 1;
-//         bundle.putString("message", "Hello from Page " + position);
-//         listFragment.setArguments(bundle);
     }
 
     @Override
