@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<Integer> mImages = new ArrayList<Integer>();
+    private ArrayList<Integer> mImages = new ArrayList<>();
     private MenuRecyclerViewAdapter.OnItemClickListener mItemClickListener;
     private ViewPager viewPager;
     private FragmentListAdapter adapter;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
