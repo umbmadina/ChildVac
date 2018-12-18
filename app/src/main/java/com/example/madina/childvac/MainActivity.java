@@ -48,15 +48,25 @@ public class MainActivity extends AppCompatActivity {
 
         mItemClickListener = new MenuRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on an image: ");
-                Toast.makeText(MainActivity.this, "bla", Toast.LENGTH_SHORT).show();
+            public void onItemClick(int position) {
+                Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
+                //Toast.makeText(MainActivity.this, mNames.get(position), Toast.LENGTH_LONG).show();
+                viewPager.setCurrentItem(position);
             }
         };
-
         getImages();
+    }
+
+    private void initRecyclerView(){
+        Log.d(TAG, "initRecyclerView: init recyclerview");
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(layoutManager);
 
 
+        MenuRecyclerViewAdapter adapter = new MenuRecyclerViewAdapter(this, mNames, mImages, mItemClickListener);
+        recyclerView.setAdapter(adapter);
     }
 
     private void getImages(){
@@ -71,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
         mImages.add(R.drawable.tag);
         mNames.add("Tickets");
-
         mImages.add(R.drawable.settings);
         mNames.add("Settings");
 
@@ -79,18 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initRecyclerView(){
-        Log.d(TAG, "initRecyclerView: init recyclerview");
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        MenuRecyclerViewAdapter adapter = new MenuRecyclerViewAdapter(this, mNames, mImages, mItemClickListener);
-        recyclerView.setAdapter(adapter);
-
-    }
 }
 
 

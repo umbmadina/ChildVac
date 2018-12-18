@@ -47,21 +47,8 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
+        holder.onBind(position, mItemClickListener);
 
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mImages.get(position))
-                .into(holder.image);
-
-        holder.name.setText(mNames.get(position));
-
-        holder.menu_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
-                //Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -73,6 +60,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
         ImageView image;
         TextView name;
+        View mItemView;
         CardView menu_card;
 
         public ViewHolder(View itemView, OnItemClickListener onItemClickListener) {
@@ -81,12 +69,32 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
             name = itemView.findViewById(R.id.name);
             menu_card= itemView.findViewById(R.id.menu_item);
             mItemClickListener = onItemClickListener;
-            itemView.setOnClickListener(this);
+            mItemView = itemView;
         }
 
         @Override
         public void onClick(View v) {
-           // mItemClickListener.onItemClick();
+            mItemClickListener.onItemClick(getAdapterPosition());
+        }
+
+        public void onBind(final int position, final OnItemClickListener onItemClickListener) {
+            Log.d(TAG, "onBind: called.");
+
+            Glide.with(mContext)
+                    .asBitmap()
+                    .load(mImages.get(position))
+                    .into(image);
+
+            name.setText(mNames.get(position));
+            mItemView.setOnClickListener(this);
+
+//            menu_card.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    //Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
+//                    //Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
+//                }
+//            });
         }
     }
 }
