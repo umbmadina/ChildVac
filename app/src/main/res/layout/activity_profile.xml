@@ -1,9 +1,426 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- have whatever children you want inside -->
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/gilroy_black"
+                android:onClick="onCancel"
+                android:text="Cancel"
+                android:textColor="#0669c6"
+                android:textSize="24sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="388dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.071">
+
+                <ImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    android:src="@drawable/baby" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="242dp"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toRightOf="@id/profile_pic"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_black"
+                        android:gravity="right"
+                        android:text="Health status:"
+                        android:textColor="#6a6a77"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="Phone"
+                        android:textColor="#6a6a77"
+                        android:textSize="18sp"
+                        app:fontFamily="@font/gilroy_medium" />
+
+                    <EditText
+                        android:id="@+id/baby_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:gravity="end"
+                        android:lineSpacingExtra="-1sp"
+                        android:textColor="#6a6a77"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/gilroy_regular" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right|end"
+                        android:lineSpacingExtra="-1sp"
+                        android:text="Date of Birth "
+                        android:textColor="#6a6a77"
+                        android:textSize="18sp"
+                        app:fontFamily="@font/gilroy_medium" />
+
+                    <EditText
+                        android:id="@+id/baby_birth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:gravity="end"
+                        android:lineSpacingExtra="-1sp"
+                        android:textColor="#6a6a77"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/gilroy_regular" />
+
+                    <View
+                        android:layout_width="150dp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#e3e3e3" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginLeft="40dp"
+                                android:gravity="end"
+                                android:lineSpacingExtra="16sp"
+                                android:text="age"
+                                android:textColor="#6a6a77"
+                                android:textSize="18sp"
+                                app:fontFamily="@font/gilroy_regular"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.117" />
+
+                            <TextView
+                                android:id="@+id/baby_age"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="end"
+                                android:text="14"
+                                android:textColor="#6a6a77"
+                                android:textSize="22sp"
+                                app:fontFamily="@font/gilroy_regular"
+                                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="90dp"
+                                android:layout_marginLeft="90dp"
+                                android:gravity="end"
+                                android:lineSpacingExtra="16sp"
+                                android:text="vaccines"
+                                android:textColor="#6a6a77"
+                                android:textSize="18sp"
+                                app:fontFamily="@font/gilroy_regular"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.117" />
+
+                            <TextView
+                                android:id="@+id/baby_vaccines"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:gravity="end"
+                                android:text="21"
+                                android:textColor="#6a6a77"
+                                android:textSize="22sp"
+                                app:fontFamily="@font/gilroy_regular"
+                                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+                        </android.support.constraint.ConstraintLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/baby_name"
+                android:layout_width="291dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="97dp"
+                android:background="@null"
+                android:enabled="false"
+                android:textColor="#4f4f6f"
+                android:textSize="36sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.192"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/hospital_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="Almaty Central Hospital "
+                android:textColor="#88889c"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintStart_toStartOf="@+id/baby_name"
+                app:layout_constraintTop_toBottomOf="@+id/baby_name" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="450dp"
+                android:layout_height="2dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="24dp"
+                android:background="#e3e3e3"
+                app:layout_constraintStart_toStartOf="@+id/hospital_name"
+                app:layout_constraintTop_toBottomOf="@+id/hospital_name" />
+
+            <TextView
+                android:id="@+id/month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="October  2018"
+                android:textColor="#6a6a77"
+                android:textSize="20sp"
+                app:fontFamily="@font/gilroy_medium"
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+
+            <TextView
+                android:id="@+id/number_visits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="8"
+                android:textColor="#0669c6"
+                android:textSize="20sp"
+                app:fontFamily="@font/gilroy_black"
+                app:layout_constraintStart_toStartOf="@+id/month"
+                app:layout_constraintTop_toBottomOf="@+id/month" />
+
+            <TextView
+                android:id="@+id/number_vaccines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="2"
+                android:textColor="#656589"
+                android:textSize="20sp"
+                app:fontFamily="@font/gilroy_black"
+                app:layout_constraintStart_toStartOf="@+id/number_visits"
+                app:layout_constraintTop_toBottomOf="@+id/number_visits" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:text="Visits"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintStart_toEndOf="@+id/number_visits"
+                app:layout_constraintTop_toBottomOf="@+id/month" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:text="Vaccines"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintStart_toEndOf="@+id/number_vaccines"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Pacient Information"
+                android:textColor="#6a6a77"
+                android:textSize="20sp"
+                app:fontFamily="@font/gilroy_black"
+                app:layout_constraintStart_toStartOf="@+id/number_vaccines"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Personal Doctor"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/personal_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Dr. Mukasheva"
+                android:textColor="#0669c6"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <TextView
+                android:id="@+id/hospital_division"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="16"
+                android:textColor="#0669c6"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/personal_doctor" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Hospital division number"
+                android:textSize="18sp"
+                app:fontFamily="@font/gilroy_regular"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/edit_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:onClick="edit"
+                android:text="Edit"
+                android:textSize="24sp"
+                app:fontFamily="@font/gilroy_medium"
+                app:layout_constraintEnd_toEndOf="@+id/hospital_division"
+                app:layout_constraintTop_toBottomOf="@+id/hospital_division" />
+
+            <ImageView
+                android:id="@+id/edit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/edit_textView"
+                app:layout_constraintTop_toBottomOf="@+id/hospital_division"
+                app:srcCompat="@drawable/edit" />
+
+            <TextView
+                android:id="@+id/button_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/gilroy_black"
+                android:onClick="onSave"
+                android:text="Save"
+                android:textColor="#0669c6"
+                android:textSize="24sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/hospital_division"
+                app:layout_constraintTop_toBottomOf="@+id/hospital_division" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
