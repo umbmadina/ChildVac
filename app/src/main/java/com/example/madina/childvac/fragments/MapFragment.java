@@ -81,52 +81,57 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        locationManager = (LocationManager) mContainer.getContext().getSystemService(Context.LOCATION_SERVICE);
-
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                mMap.clear();
-//                LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
-                LatLng userLocation = new LatLng(43.235334,76.909873);
+//        locationManager = (LocationManager) mContainer.getContext().getSystemService(Context.LOCATION_SERVICE);
+//
+//        locationListener = new LocationListener() {
+//            @Override
+//            public void onLocationChanged(Location location) {
+//                mMap.clear();
+////                LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+//                LatLng userLocation = new LatLng(43.235334,76.909873);
+//                mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location")
+//                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.child_marker)));
+////                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 17));
+//                drawLocations();
+//            }
+//
+//            @Override
+//            public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//            }
+//
+//            @Override
+//            public void onProviderEnabled(String provider) {
+//
+//            }
+//
+//            @Override
+//            public void onProviderDisabled(String provider) {
+//
+//            }
+//        };
+//
+//        if (Build.VERSION.SDK_INT < 23) {
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+//        } else {
+//            if (ContextCompat.checkSelfPermission(mContainer.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 1);
+//            } else {
+//                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+//                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//
+//                mMap.clear();
+//                LatLng userLocation = new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
+//                mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location")
+//                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+//                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 17));
+//            }
+//        }
+        LatLng userLocation = new LatLng(43.235334,76.909873);
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location")
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.child_marker)));
-//                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 17));
-                drawLocations();
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-        };
-
-        if (Build.VERSION.SDK_INT < 23) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        } else {
-            if (ContextCompat.checkSelfPermission(mContainer.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 1);
-            } else {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                mMap.clear();
-                LatLng userLocation = new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 17));
-            }
-        }
+        drawLocations();
 
     }
 
