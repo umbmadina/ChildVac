@@ -48,15 +48,12 @@ public class AuthActivity extends AppCompatActivity {
                                     throw new NullPointerException();
                                 } else {
                                     /* save child data to use in the future */
-                                    SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-                                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                     Gson gson = new Gson();
                                     String childJson = gson.toJson(response.body());
-                                    prefsEditor.putString("Child", childJson);
-                                    prefsEditor.apply();
                                     /* end */
 
                                     Intent mainIntent = new Intent(AuthActivity.this,MainActivity.class);
+                                    mainIntent.putExtra("ChildJson", childJson);
                                     startActivity(mainIntent);
                                 }
                             } catch (Exception e) {
