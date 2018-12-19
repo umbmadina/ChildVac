@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String login = getIntent().getStringExtra("childLogin");
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("childLogin",login);
                 startActivity(intent);
             }
         });
