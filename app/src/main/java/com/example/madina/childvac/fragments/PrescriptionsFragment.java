@@ -1,25 +1,29 @@
 package com.example.madina.childvac.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.example.madina.childvac.App;
 import com.example.madina.childvac.R;
-import com.example.madina.childvac.adapters.MenuRecyclerViewAdapter;
 import com.example.madina.childvac.adapters.PrescriptionsRecyclerViewAdapter;
+import com.example.madina.childvac.models.Child;
+import com.example.madina.childvac.models.Prescription;
+import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
-import static android.support.constraint.Constraints.TAG;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PrescriptionsFragment extends Fragment {
 
@@ -48,37 +52,35 @@ public class PrescriptionsFragment extends Fragment {
     private void getData(View view){
         Log.d(TAG, "initData: preparing data.");
 
-        //1st
-        list_diagnosis.add("Influenza ");
-        list_doctor.add("Dr. Ayzhan Zhumabekova");
-        list_visit_type.add("Doctor Visit ");
-        list_date.add("1/10/2018");
-        list_description.add("Due to the cold weather and seasonal viruses the  pacient caught Influenza.Due to the cold weather and seasonal viruses the  pacient caught Influenza.Due to the cold weather and seasonal viruses the  pacient caught Influenza.");
-        list_prescription.add("Ibuprofen 3 times/day during 2 weeks.");
+        int childId = this.getActivity().getIntent().getIntExtra("childId", 1);
 
-        //2nd
-        list_diagnosis.add("Broken Leg ");
-        list_doctor.add("Dr. Ayzhan Zhumabekova");
-        list_visit_type.add("Nurse Visit ");
-        list_date.add("27/09/2018");
-        list_description.add("Due to the cold weather and seasonal viruses the  pacient caught Influenza.");
-        list_prescription.add("Ibuprofen 3 times/day during 2 weeks.");
+        App.getApi().getChildPrescription(childId).enqueue(new Callback<List<Prescription>>() {
+            @Override
+            public void onResponse(Call<List<Prescription>> call, Response<List<Prescription>> response) {
+                List<Prescription> prescriptions = response.body();
+                for (Prescription p : prescriptions) {
+                    String date = "00/00/00";
+                    try {
+                         date = new SimpleDateFormat("dd/MM/YYYY")
+                                        .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+                                        .parse(p.getDateTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    list_diagnosis.add(p.getDiagnosis());
+                    list_doctor.add("Dr " + p.getDoctorFullName());
+                    list_visit_type.add(p.getVisitType());
+                    list_date.add(date);
+                    list_description.add(p.getDescription());
+                    list_prescription.add(p.getPrescriptionText());
+                }
 
-        //3rd
-        list_diagnosis.add("Nose Bleeding ");
-        list_doctor.add("Dr. Ayzhan Zhumabekova");
-        list_visit_type.add("Nurse Visit ");
-        list_date.add("25/12/2018");
-        list_description.add("Due to the cold weather and seasonal viruses the  pacient caught Influenza.");
-        list_prescription.add("Ibuprofen 3 times/day during 2 weeks.");
+            }
 
-        //4th
-        list_diagnosis.add("Asdfgsdfgh ");
-        list_doctor.add("Dr. Ayzhan Zhumabekova");
-        list_visit_type.add("Nurse Visit ");
-        list_date.add("27/09/2018");
-        list_description.add("Due to the cold weather and seasonal viruses the  pacient caught Influenza.");
-        list_prescription.add("Ibuprofen 3 times/day during 2 weeks.");
+            @Override
+            public void onFailure(Call<List<Prescription>> call, Throwable t) {
+            }
+        });
 
 
         initRecyclerView(view);
