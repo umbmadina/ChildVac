@@ -2,6 +2,7 @@ package com.example.madina.childvac.api;
 
 import com.example.madina.childvac.models.Child;
 import com.example.madina.childvac.models.Prescription;
+import com.example.madina.childvac.models.Ticket;
 
 import java.util.List;
 
@@ -23,5 +24,8 @@ public interface ChildVacApi {
 
     @PUT("api/children/{id}/")
     Call<Child> updateChild(@Path("id") int id, @Body Child child);
+
+    @GET("api/schedule/{id}")
+    Call<List<Ticket>> getTickets(@Path("id") int id);
 }
 

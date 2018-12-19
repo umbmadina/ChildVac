@@ -9,10 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.madina.childvac.App;
 import com.example.madina.childvac.R;
 import com.example.madina.childvac.adapters.TicketsRecyclerViewAdapter;
+import com.example.madina.childvac.models.Ticket;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,40 +62,86 @@ public class TicketFragment extends Fragment {
         timeList = new ArrayList<>();
         statusList = new ArrayList<>();
 
-        dayList.add("Tue 16 Oct");
-        vaccineNameList.add("Influenza");
-        roomList.add("401");
-        nurseList.add("Gigi Hadid");
-        timeList.add("9:00 - 9:15");
-        statusList.add("Pending");
+        int childId = this.getActivity().getIntent().getIntExtra("childId", 1);
+        final String dateFormat = "E d MMM";
+        final String timeFormat = "HH:mm";
 
-        dayList.add("Tue 16 Oct");
-        vaccineNameList.add("Influenza 2");
-        roomList.add("401");
-        nurseList.add("Gigi Hadid");
-        timeList.add("9:00 - 9:15");
-        statusList.add("Pending");
+        App.getApi().getTickets(childId).enqueue(new Callback<List<Ticket>>() {
+            @Override
+            public void onResponse(Call<List<Ticket>> call, Response<List<Ticket>> response) {
+                List<Ticket> tickets = response.body();
 
-        dayList.add("Tue 16 Oct");
-        vaccineNameList.add("Influenza 3");
-        roomList.add("401");
-        nurseList.add("Gigi Hadid");
-        timeList.add("9:00 - 9:15");
-        statusList.add("Pending");
+                for(Ticket t : tickets) {
+                    String ticketDay = "Today";
+                    String ticketTime = "now";
+                    try {
+                        ticketDay = new SimpleDateFormat(dateFormat)
+                                .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                                .parse(t.getStartDate()));
 
-        dayList.add("Tue 16 Oct");
-        vaccineNameList.add("Influenza 4");
-        roomList.add("401");
-        nurseList.add("Gigi Hadid");
-        timeList.add("9:00 - 9:15");
-        statusList.add("Pending");
+                        String ticketTimeStart = new SimpleDateFormat(timeFormat)
+                                .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                                .parse(t.getStartDate()));
+                        String ticketTimeEnd = new SimpleDateFormat(timeFormat)
+                                .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                                .parse(t.getEndDate()));
 
-        dayList.add("Tue 16 Oct");
-        vaccineNameList.add("Influenza 5");
-        roomList.add("401");
-        nurseList.add("Gigi Hadid");
-        timeList.add("9:00 - 9:15");
-        statusList.add("Pending");
+                        ticketTime = ticketTimeStart + " - " + ticketTimeEnd;
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    dayList.add(ticketDay);
+                    vaccineNameList.add(t.getDiagnosis());
+                    roomList.add(String.valueOf(t.getRoom()));
+                    nurseList.add(t.getDoctorFullName());
+                    timeList.add(ticketTime);
+                    statusList.add("Zhopa");
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Ticket>> call, Throwable t) {
+
+            }
+        });
+
+//        dayList.add("Tue 16 Oct");
+//        vaccineNameList.add("Influenza");
+//        roomList.add("401");
+//        nurseList.add("Gigi Hadid");
+//        timeList.add("9:00 - 9:15");
+//        statusList.add("Pending");
+//
+//        dayList.add("Tue 16 Oct");
+//        vaccineNameList.add("Influenza 2");
+//        roomList.add("401");
+//        nurseList.add("Gigi Hadid");
+//        timeList.add("9:00 - 9:15");
+//        statusList.add("Pending");
+//
+//        dayList.add("Tue 16 Oct");
+//        vaccineNameList.add("Influenza 3");
+//        roomList.add("401");
+//        nurseList.add("Gigi Hadid");
+//        timeList.add("9:00 - 9:15");
+//        statusList.add("Pending");
+//
+//        dayList.add("Tue 16 Oct");
+//        vaccineNameList.add("Influenza 4");
+//        roomList.add("401");
+//        nurseList.add("Gigi Hadid");
+//        timeList.add("9:00 - 9:15");
+//        statusList.add("Pending");
+//
+//        dayList.add("Tue 16 Oct");
+//        vaccineNameList.add("Influenza 5");
+//        roomList.add("401");
+//        nurseList.add("Gigi Hadid");
+//        timeList.add("9:00 - 9:15");
+//        statusList.add("Pending");
     }
 
     private void initRecyclerView(View view) {

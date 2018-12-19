@@ -153,8 +153,8 @@ public class ProfileActivity extends AppCompatActivity {
         doctor = findViewById(R.id.personal_doctor);
         division = findViewById(R.id.hospital_division);
         final String datePattern = "MM/dd/YYYY";
-        String login = getIntent().getStringExtra("childLogin");
 
+        String login = getIntent().getStringExtra("childLogin");
         App.getApi().getChild(login).enqueue(new Callback<Child>() {
             @Override
             public void onResponse(Call<Child> call, Response<Child> response) {
