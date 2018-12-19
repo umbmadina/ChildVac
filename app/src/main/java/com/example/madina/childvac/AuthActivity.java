@@ -1,7 +1,6 @@
 package com.example.madina.childvac;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.madina.childvac.models.Child;
-import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
