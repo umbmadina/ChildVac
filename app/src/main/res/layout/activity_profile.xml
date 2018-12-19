@@ -68,7 +68,7 @@
                 android:lineSpacingExtra="-1sp"
                 android:text="Phone"
                 android:textColor="#6a6a77"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:fontFamily="@font/gilroy_medium" />
 
             <EditText
@@ -76,13 +76,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:enabled="false"
                 android:gravity="end"
                 android:lineSpacingExtra="-1sp"
-                android:text="+7(707)597-91-14"
                 android:textColor="#6a6a77"
-                android:textSize="18sp"
-                app:fontFamily="@font/gilroy_regular"
-                android:enabled="false"/>
+                android:textSize="16sp"
+                app:fontFamily="@font/gilroy_regular" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -92,7 +91,7 @@
                 android:lineSpacingExtra="-1sp"
                 android:text="Date of Birth "
                 android:textColor="#6a6a77"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:fontFamily="@font/gilroy_medium" />
 
             <EditText
@@ -100,12 +99,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:enabled="false"
                 android:gravity="end"
                 android:lineSpacingExtra="-1sp"
-                android:text="02/08/1984 "
-                android:enabled="false"
                 android:textColor="#6a6a77"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:fontFamily="@font/gilroy_regular" />
 
             <View
@@ -206,13 +204,12 @@
         android:layout_width="291dp"
         android:layout_height="45dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="97dp"
         android:background="@null"
         android:enabled="false"
-        android:text="Sasha Klimenko"
         android:textColor="#4f4f6f"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:fontFamily="@font/gilroy_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -248,7 +245,7 @@
         android:id="@+id/month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:text="October  2018"
         android:textColor="#6a6a77"
         android:textSize="20sp"
