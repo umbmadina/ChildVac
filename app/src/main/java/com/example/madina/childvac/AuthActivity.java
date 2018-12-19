@@ -47,13 +47,9 @@ public class AuthActivity extends AppCompatActivity {
                                 if (!response.body().getPassword().equals(p) || response.body() == null){
                                     throw new NullPointerException();
                                 } else {
-                                    /* save child data to use in the future */
-                                    Gson gson = new Gson();
-                                    String childJson = gson.toJson(response.body());
-                                    /* end */
-
                                     Intent mainIntent = new Intent(AuthActivity.this,MainActivity.class);
-                                    mainIntent.putExtra("ChildJson", childJson);
+                                    mainIntent.putExtra("childId", response.body().getId());
+                                    mainIntent.putExtra("childLogin", response.body().getLogin());
                                     startActivity(mainIntent);
                                 }
                             } catch (Exception e) {

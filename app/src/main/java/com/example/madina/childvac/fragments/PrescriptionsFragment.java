@@ -16,6 +16,8 @@ import com.example.madina.childvac.models.Child;
 import com.example.madina.childvac.models.Prescription;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,20 +52,25 @@ public class PrescriptionsFragment extends Fragment {
     private void getData(View view){
         Log.d(TAG, "initData: preparing data.");
 
-        String childJson = this.getActivity().getIntent().getStringExtra("ChildJson");
+        int childId = this.getActivity().getIntent().getIntExtra("childId", 1);
 
-        Gson gson = new Gson();
-        Child c = gson.fromJson(childJson, Child.class);
-
-        App.getApi().getChildPrescription(c.getId()).enqueue(new Callback<List<Prescription>>() {
+        App.getApi().getChildPrescription(childId).enqueue(new Callback<List<Prescription>>() {
             @Override
             public void onResponse(Call<List<Prescription>> call, Response<List<Prescription>> response) {
                 List<Prescription> prescriptions = response.body();
                 for (Prescription p : prescriptions) {
+                    String date = "00/00/00";
+                    try {
+                         date = new SimpleDateFormat("dd/MM/YYYY")
+                                        .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+                                        .parse(p.getDateTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     list_diagnosis.add(p.getDiagnosis());
                     list_doctor.add("Dr " + p.getDoctorFullName());
                     list_visit_type.add(p.getVisitType());
-                    list_date.add(p.getDateTime());
+                    list_date.add(date);
                     list_description.add(p.getDescription());
                     list_prescription.add(p.getPrescriptionText());
                 }

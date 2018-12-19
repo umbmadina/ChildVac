@@ -7,6 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.madina.childvac.models.Child;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ProfileActivity extends AppCompatActivity {
     //editable
     TextView phone_number;
@@ -103,9 +112,32 @@ public class ProfileActivity extends AppCompatActivity {
         doctor = findViewById(R.id.personal_doctor);
         division = findViewById(R.id.hospital_division);
 
-        name = pacient_name.getText().toString();
-        phone = phone_number.getText().toString();
-        birth = date_of_birth.getText().toString();
+        String login = getIntent().getStringExtra("childLogin");
+
+        App.getApi().getChild(login).enqueue(new Callback<Child>() {
+            @Override
+            public void onResponse(Call<Child> call, Response<Child> response) {
+                Child c = response.body();
+                String dOfB = "";
+                try {
+                    dOfB = new SimpleDateFormat("dd/MM/YYYY")
+                                    .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+                                    .parse(c.getDateOfBirth()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                pacient_name.setText(c.getFirstName() + " " + c.getLastName());
+                date_of_birth.setText(dOfB);
+                phone_number.setText(c.getPhone());
+            }
+
+            @Override
+            public void onFailure(Call<Child> call, Throwable t) {
+
+            }
+        });
+
 
     }
 
