@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(layoutManager);
 
-
         MenuRecyclerViewAdapter adapter = new MenuRecyclerViewAdapter(this, mNames, mImages, mItemClickListener);
         recyclerView.setAdapter(adapter);
     }
@@ -83,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
         mImages.add(R.drawable.tag);
         mNames.add("Tickets");
-        mImages.add(R.drawable.settings);
-        mNames.add("Settings");
+        mImages.add(R.drawable.settings_icon);
+        mNames.add("Map");
 
         initRecyclerView();
 
