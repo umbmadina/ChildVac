@@ -6,8 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.madina.childvac.fragments.ListFragment;
+import com.example.madina.childvac.fragments.MapFragment;
 import com.example.madina.childvac.fragments.PrescriptionsFragment;
 import com.example.madina.childvac.fragments.ScheduleFragment;
+import com.example.madina.childvac.fragments.SettingsFragment;
 import com.example.madina.childvac.fragments.TicketFragment;
 
 public class FragmentListAdapter extends FragmentPagerAdapter {
@@ -27,7 +29,7 @@ public class FragmentListAdapter extends FragmentPagerAdapter {
             case 2:
                 return new TicketFragment();
             case 3:
-                return new ListFragment();
+                return new MapFragment();
             default:
                 break;
         }
