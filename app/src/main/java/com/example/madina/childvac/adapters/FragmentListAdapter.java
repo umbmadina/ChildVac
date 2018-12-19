@@ -18,9 +18,9 @@ public class FragmentListAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new PrescriptionsFragment();
-            case 1:
                 return new ListFragment();
+            case 1:
+                return new PrescriptionsFragment();
             case 2:
                 return new TicketFragment();
             case 3:
