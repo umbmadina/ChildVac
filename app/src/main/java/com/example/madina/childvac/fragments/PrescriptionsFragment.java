@@ -2,6 +2,7 @@ package com.example.madina.childvac.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 public class PrescriptionsFragment extends Fragment {
 
     private static final String TAG = "PrescriptionsFragment";
-
+    PrescriptionsRecyclerViewAdapter adapter;
     //vars
     private ArrayList<String> list_diagnosis = new ArrayList<>();
     private ArrayList<String> list_doctor = new ArrayList<>();
@@ -36,6 +37,7 @@ public class PrescriptionsFragment extends Fragment {
     private ArrayList<String> list_date = new ArrayList<>();
     private ArrayList<String> list_description = new ArrayList<>();
     private ArrayList<String> list_prescription = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public PrescriptionsFragment() {
         // Required empty public constructor
@@ -44,8 +46,21 @@ public class PrescriptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_prescriptions, container,false);
+        final View view = inflater.inflate(R.layout.fragment_prescriptions, container,false);
+        clearData();
         getData(view);
+
+        swipeRefreshLayout = view.findViewById(R.id.presRefresh);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                clearData();
+                getData(view);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         return view;
     }
 
@@ -62,7 +77,7 @@ public class PrescriptionsFragment extends Fragment {
                     String date = "00/00/00";
                     try {
                          date = new SimpleDateFormat("dd/MM/YYYY")
-                                        .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+                                        .format(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                                         .parse(p.getDateTime()));
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -74,6 +89,7 @@ public class PrescriptionsFragment extends Fragment {
                     list_description.add(p.getDescription());
                     list_prescription.add(p.getPrescriptionText());
                 }
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -87,16 +103,24 @@ public class PrescriptionsFragment extends Fragment {
 
     }
 
+    private void clearData(){
+        list_diagnosis.clear();
+        list_doctor.clear();
+        list_visit_type.clear();
+        list_date.clear();
+        list_description.clear();
+        list_prescription.clear();
+    }
+
     private void initRecyclerView(View view){
         Log.d(TAG, "initRecyclerView: init prescriptions_recyclerview");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.prescriptions_recycler_view);
         recyclerView.setLayoutManager(layoutManager);
-        PrescriptionsRecyclerViewAdapter adapter = new PrescriptionsRecyclerViewAdapter(getContext(), list_diagnosis, list_doctor,
+        adapter = new PrescriptionsRecyclerViewAdapter(getContext(), list_diagnosis, list_doctor,
                 list_visit_type, list_date,
                 list_description, list_prescription);
-
         recyclerView.setAdapter(adapter);
 
     }
